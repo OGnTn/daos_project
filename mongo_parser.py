@@ -8,18 +8,7 @@ import numpy as np
 import pymongo
 import re
 
-mongoclient = pymongo.MongoClient("mongodb://localhost:27017/")
-testdb = mongoclient["testdb"]
-testarticlescol = testdb["articles"]
-testproceedingcol = testdb["proceedings"]
-testinproceedingcol = testdb["inproceedings"]
 
-article_attributes = ['key', 'author', 'title',
-                      'journal', 'volume', 'number', 'year']
-proceeding_attributes = ['key', 'editor', 'title', 'booktitle',
-                         'publisher', 'volume', 'year']
-inproceeding_attributes = ['key', 'author',
-                           'title', 'pages', 'year', 'booktitle']
 
 
 def mymap(fun, list):
@@ -35,6 +24,19 @@ def mymap(fun, list):
 
 
 def parse(xml_file):
+
+    mongoclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    testdb = mongoclient["testdb"]
+    testarticlescol = testdb["articles"]
+    testproceedingcol = testdb["proceedings"]
+    testinproceedingcol = testdb["inproceedings"]
+
+    article_attributes = ['key', 'author', 'title',
+                      'journal', 'volume', 'number', 'year']
+    proceeding_attributes = ['key', 'editor', 'title', 'booktitle',
+                         'publisher', 'volume', 'year']
+    inproceeding_attributes = ['key', 'author',
+                           'title', 'pages', 'year', 'booktitle']
     article_data = dict(
         zip(article_attributes, [[] for attrib in range(len(article_attributes))]))
     proceeding_data = dict(
@@ -84,6 +86,5 @@ def parse(xml_file):
     testproceedingcol.insert_many(proceedings)
     print("inproceedings inserted.")
     print("file parsed")
-
 
 parse('dblp.xml')
