@@ -5,22 +5,27 @@ def load_data():
     academic = pd.read_feather('../data/feathers/academic.feather')
 
     # Tables concerning inproceedings (conference articles)
-    improceeding = pd.read_feather('../data/feathers/improceeding_table.feather')
-    author_inproceeding = pd.read_feather('../data/feathers/author_inproceedings.feather')
-    booktitle_improceeding = pd.read_feather('../data/feathers/improceeding_booktitle.feather')
+    improceeding = pd.read_feather(
+        '../data/feathers/improceeding_table.feather')
+    author_inproceeding = pd.read_feather(
+        '../data/feathers/author_inproceedings.feather')
+    booktitle_improceeding = pd.read_feather(
+        '../data/feathers/improceeding_booktitle.feather')
 
     # All tables concerning articles(journal articles)
     article = pd.read_feather('../data/feathers/articles_table.feather')
     author_article = pd.read_feather('../data/feathers/author_article.feather')
     journal = pd.read_feather('../data/feathers/journals_table.feather')
 
-
     # All tables concerning proceedings (conference proceedings => bundled conference articles)
-    editor_proceeding = pd.read_feather('../data/feathers/editor_proceedings.feather')
-    publisher_proceeding = pd.read_feather('../data/feathers/publisher_proceeding.feather')
+    editor_proceeding = pd.read_feather(
+        '../data/feathers/editor_proceedings.feather')
+    publisher_proceeding = pd.read_feather(
+        '../data/feathers/publisher_proceeding.feather')
     publisher = pd.read_feather('../data/feathers/publisher_table.feather')
     proceeding = pd.read_feather('../data/feathers/proceeding_table.feather')
-    booktitle_proceeding = pd.read_feather('../data/feathers/proceeding_booktitle.feather')
+    booktitle_proceeding = pd.read_feather(
+        '../data/feathers/proceeding_booktitle.feather')
 
     # All tables concerning booktiles (conferences)
     booktitle = pd.read_feather('../data/feathers/booktitles_table.feather')
@@ -28,12 +33,12 @@ def load_data():
     return verify_data(academic, improceeding, author_inproceeding, booktitle_improceeding, article, author_article, journal, editor_proceeding, publisher_proceeding, publisher, proceeding, booktitle_proceeding, booktitle)
 
 
-
 def verify_data(academic, improceeding, author_inproceeding, booktitle_improceeding, article, author_article, journal, editor_proceeding, publisher_proceeding, publisher, proceeding, booktitle_proceeding, booktitle):
     # remove duplicated rows from all tables if they exist
     improceeding = improceeding.drop_duplicates(keep='first')
     author_inproceeding = author_inproceeding.drop_duplicates(keep='first')
-    booktitle_improceeding = booktitle_improceeding.drop_duplicates(keep='first')
+    booktitle_improceeding = booktitle_improceeding.drop_duplicates(
+        keep='first')
     article = article.drop_duplicates(keep='first')
     author_article = author_article.drop_duplicates(keep='first')
     journal = journal.drop_duplicates(keep='first')
@@ -44,20 +49,22 @@ def verify_data(academic, improceeding, author_inproceeding, booktitle_improceed
     booktitle_proceeding = booktitle_proceeding.drop_duplicates(keep='first')
     booktitle = booktitle.drop_duplicates(keep='first')
 
-    #rename columns of tables to be more readable for the querries
-    academic.columns = ['academic_id','academic_name']
-    article.columns = ['article_id','article_title','journal_id']
-    author_article.columns = ['academic_id','article_id']
-    journal.columns = ['journal_id','journal_name']
-    proceeding.columns = ['proceeding_id','proceeding_title','year','volume']
-    publisher.columns = ['publisher_id','publisher_name']
-    booktitle.columns = ['booktitle_id','booktitle_name']
-    booktitle_proceeding.columns = ['proceeding_id','booktitle_id']
-    improceeding.columns = ['improceeding_id','improceeding_title','pages','year']
-    booktitle_improceeding.columns = ['improceeding_id','booktitle_id']
-    publisher_proceeding.columns = ['publisher_id','proceeding_id']
-    editor_proceeding.columns = ['academic_id','proceeding_id']
-    author_inproceeding.columns = ['academic_id','improceeding_id']
+    # rename columns of tables to be more readable for the querries
+    academic.columns = ['academic_id', 'academic_name']
+    article.columns = ['article_id', 'article_title', 'journal_id']
+    author_article.columns = ['academic_id', 'article_id']
+    journal.columns = ['journal_id', 'journal_name']
+    proceeding.columns = ['proceeding_id',
+                          'proceeding_title', 'year', 'volume']
+    publisher.columns = ['publisher_id', 'publisher_name']
+    booktitle.columns = ['booktitle_id', 'booktitle_name']
+    booktitle_proceeding.columns = ['proceeding_id', 'booktitle_id']
+    improceeding.columns = ['improceeding_id',
+                            'improceeding_title', 'pages', 'year']
+    booktitle_improceeding.columns = ['improceeding_id', 'booktitle_id']
+    publisher_proceeding.columns = ['publisher_id', 'proceeding_id']
+    editor_proceeding.columns = ['academic_id', 'proceeding_id']
+    author_inproceeding.columns = ['academic_id', 'improceeding_id']
 
     return academic, improceeding, author_inproceeding, booktitle_improceeding, article, author_article, journal, editor_proceeding, publisher_proceeding, publisher, proceeding, booktitle_proceeding, booktitle
 
@@ -79,30 +86,30 @@ def init_duckdb():
     cursor.execute('CREATE TABLE improceeding AS SELECT * FROM improceeding')
 
     # Create the 'author_inproceeding' table
-    cursor.execute('CREATE TABLE author_inproceeding AS SELECT * FROM author_inproceeding')
-
+    cursor.execute(
+        'CREATE TABLE author_inproceeding AS SELECT * FROM author_inproceeding')
 
     # Create the 'booktitle_improceeding' table
-    cursor.execute('CREATE TABLE booktitle_improceeding AS SELECT *  FROM booktitle_improceeding')
-
+    cursor.execute(
+        'CREATE TABLE booktitle_improceeding AS SELECT *  FROM booktitle_improceeding')
 
     # Create the 'article' table
     cursor.execute('CREATE TABLE article AS SELECT * FROM article')
 
     # Create the 'author_article' table
-    cursor.execute('CREATE TABLE author_article AS SELECT * FROM author_article')
+    cursor.execute(
+        'CREATE TABLE author_article AS SELECT * FROM author_article')
 
     # Create the 'journal' table
     cursor.execute('CREATE TABLE journal AS SELECT * FROM journal')
 
-
     # Create the 'editor_proceeding' table
-    cursor.execute('CREATE TABLE editor_proceeding AS SELECT * FROM editor_proceeding')
-
+    cursor.execute(
+        'CREATE TABLE editor_proceeding AS SELECT * FROM editor_proceeding')
 
     # Create the 'publisher_proceeding' table
-    cursor.execute('CREATE TABLE publisher_proceeding AS SELECT * FROM publisher_proceeding')
-
+    cursor.execute(
+        'CREATE TABLE publisher_proceeding AS SELECT * FROM publisher_proceeding')
 
     # Create the 'publisher' table
     cursor.execute('CREATE TABLE publisher AS SELECT * FROM publisher')
@@ -111,13 +118,14 @@ def init_duckdb():
     cursor.execute('CREATE TABLE proceeding AS SELECT * FROM proceeding')
 
     # Create the 'booktitle_proceeding' table
-    cursor.execute('CREATE TABLE booktitle_proceeding AS SELECT * FROM booktitle_proceeding')
-
+    cursor.execute(
+        'CREATE TABLE booktitle_proceeding AS SELECT * FROM booktitle_proceeding')
 
     # Create the 'booktitle' table
     cursor.execute('CREATE TABLE booktitle AS SELECT * FROM booktitle')
 
     return conn, cursor
+
 
 def close_duckdb(conn, cursor):
     # Close the cursor and connection
@@ -125,10 +133,8 @@ def close_duckdb(conn, cursor):
     conn.close()
 
 
-
-
-#duckdb final querries :
-E1  = """
+# duckdb final querries :
+E1 = """
 SELECT publisher.publisher_name 
 FROM publisher 
 JOIN publisher_proceeding ON publisher.publisher_id=publisher_proceeding.publisher_id 
@@ -137,7 +143,7 @@ WHERE proceeding.proceeding_title LIKE '%PODS%' AND publisher.publisher_name IS 
 GROUP BY publisher_name
 """
 
-E2  = """
+E2 = """
 SELECT article.article_title 
 FROM article JOIN author_article ON author_article.article_id=article.article_id 
 JOIN academic ON academic.academic_id=author_article.academic_id 
@@ -146,7 +152,6 @@ WHERE journal.journal_name='Theory Comput. Syst.'
 AND academic.academic_name='Martin Grohe' 
 ORDER BY article.article_title
 """
-
 
 
 M1 = """
@@ -289,8 +294,8 @@ B1 = """
 
 
 def get_duckdb_queries():
-    return [E1,E2,M1,M2,M3,M4,M5,M6]
+    return [E1, E2, M1, M2, M3, M4, M5, M6]
 
 
 def get_duckdb_queries_names():
-    return ["E1","E2","M1","M2","M3","M4","M5","M6",]
+    return ["E1", "E2", "M1", "M2", "M3", "M4", "M5", "M6", ]
