@@ -165,12 +165,15 @@ M1 = """
             """
 
 M2 = """
-SELECT journal_name, COUNT(journal_name) as num_articles
-FROM article, journal
-where article.journal_id = journal.journal_id
-GROUP BY journal_name
-ORDER BY num_articles DESC
-LIMIT 1
+SELECT journal_name,
+            COUNT(journal_name) as num_articles
+            FROM article
+            JOIN journal ON article.journal_id = journal.journal_id
+            WHERE journal.year = (SELECT MIN(journal.year)
+                                    FROM journal)
+            GROUP BY journal_name
+            ORDER BY num_articles DESC
+            LIMIT 1
 """
 
 
