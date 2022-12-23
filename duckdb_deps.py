@@ -46,7 +46,7 @@ def verify_data(academic, improceeding, author_inproceeding, booktitle_improceed
 
     #rename columns of tables to be more readable for the querries
     academic.columns = ['academic_id','academic_name']
-    article.columns = ['article_id','article_title','journal_id']
+    article.columns = ['article_id','article_title','journal_id','year','volume','pages']
     author_article.columns = ['academic_id','article_id']
     journal.columns = ['journal_id','journal_name']
     proceeding.columns = ['proceeding_id','proceeding_title','year','volume']
