@@ -321,4 +321,8 @@ m6 = Query([
 
 ], proceeding_collection)
 
-mongo_queries = [e1, e2, m1, m2, m3, m4, m5, m6]
+def get_mongo_queries_names():
+    return ["MongoDB_E1", "MongoDB_E2", "MongoDB_M1", "MongoDB_M2", "MongoDB_M3", "MongoDB_M4", "MongoDB_M5", "MongoDB_M6"]
+
+def get_mongo_queries():
+    return [e1, e2, m1, m2, m3, m4, m5, m6]
