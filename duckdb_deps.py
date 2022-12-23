@@ -2,28 +2,28 @@
 
 def load_data():
     import pandas as pd
-    academic = pd.read_feather('./feathers/academic.feather')
+    academic = pd.read_feather('../data/feathers/academic.feather')
 
     # Tables concerning inproceedings (conference articles)
-    improceeding = pd.read_feather('./feathers/improceeding_table.feather')
-    author_inproceeding = pd.read_feather('./feathers/author_inproceedings.feather')
-    booktitle_improceeding = pd.read_feather('./feathers/improceeding_booktitle.feather')
+    improceeding = pd.read_feather('../data/feathers/improceeding_table.feather')
+    author_inproceeding = pd.read_feather('../data/feathers/author_inproceedings.feather')
+    booktitle_improceeding = pd.read_feather('../data/feathers/improceeding_booktitle.feather')
 
     # All tables concerning articles(journal articles)
-    article = pd.read_feather('./feathers/articles_table.feather')
-    author_article = pd.read_feather('./feathers/author_article.feather')
-    journal = pd.read_feather('./feathers/journals_table.feather')
+    article = pd.read_feather('../data/feathers/articles_table.feather')
+    author_article = pd.read_feather('../data/feathers/author_article.feather')
+    journal = pd.read_feather('../data/feathers/journals_table.feather')
 
 
     # All tables concerning proceedings (conference proceedings => bundled conference articles)
-    editor_proceeding = pd.read_feather('./feathers/editor_proceedings.feather')
-    publisher_proceeding = pd.read_feather('./feathers/publisher_proceeding.feather')
-    publisher = pd.read_feather('./feathers/publisher_table.feather')
-    proceeding = pd.read_feather('./feathers/proceeding_table.feather')
-    booktitle_proceeding = pd.read_feather('./feathers/proceeding_booktitle.feather')
+    editor_proceeding = pd.read_feather('../data/feathers/editor_proceedings.feather')
+    publisher_proceeding = pd.read_feather('../data/feathers/publisher_proceeding.feather')
+    publisher = pd.read_feather('../data/feathers/publisher_table.feather')
+    proceeding = pd.read_feather('../data/feathers/proceeding_table.feather')
+    booktitle_proceeding = pd.read_feather('../data/feathers/proceeding_booktitle.feather')
 
     # All tables concerning booktiles (conferences)
-    booktitle = pd.read_feather('./feathers/booktitles_table.feather')
+    booktitle = pd.read_feather('../data/feathers/booktitles_table.feather')
 
     return verify_data(academic, improceeding, author_inproceeding, booktitle_improceeding, article, author_article, journal, editor_proceeding, publisher_proceeding, publisher, proceeding, booktitle_proceeding, booktitle)
 
