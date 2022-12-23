@@ -68,5 +68,8 @@ def parse(toParse,attributes,xml_file):
 
 
 # Call the 'parse' function to extract data from 'article' elements in the XML file
-parse('article',ARTICLE_ATTRIBUTES,XML_FILE)
+# run ther script for each type of element you want to parse
+#parse('article',ARTICLE_ATTRIBUTES,XML_FILE)
+parse('proceedings',PROCEEDING_ATTRIBUTES,XML_FILE)
+#parse('inproceedings',INPROCEEDING_ATTRIBUTES,XML_FILE)
 
